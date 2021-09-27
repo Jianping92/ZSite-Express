@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Jianping92/ZSite-Express#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^6.0.7"
+    "mongoose": "^6.0.7",
+    "validator": "^13.6.0"
   }
 }
