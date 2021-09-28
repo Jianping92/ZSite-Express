@@ -4,7 +4,15 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    minlength: 2,
+    maxlength: 40
+  },
+  nickname: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 40
   },
   password: {
     type: String,
@@ -15,6 +23,7 @@ const UserSchema = new Schema({
   },
   gender: {
     type: String,
+    required: true,
     enum: ["male", "female", "secret"], // 男 女 保密
     default: "secret"
   },
@@ -28,7 +37,7 @@ const UserSchema = new Schema({
   },
   updateTime: {
     type: Date,
-    default: Date.now()
+    default: new Date().toJSON()
   },
   desc: {
     type: String,
