@@ -16,7 +16,10 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    set(val) {
+      return require("bcryptjs").hashSync(val, 10);
+    }
   },
   email: {
     type: String

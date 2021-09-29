@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const passport = require("passport"); // 身份验证中间件
 
 const { Mongo } = require("./db/db");
 const userRouter = require("./routes/user");
@@ -15,14 +16,15 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  // res.header("Access-Control-Expose-Headers", "Authorization");
   next();
 });
 
+require("./utlis/passport")(passport);
+
+app.use(passport.initialize());
+
 app.get("/", (req, res) => {
-  // console.log(req.cookies);
-  // console.log(req.params);
-  // console.log(req.query);
-  // console.log(req.body);
   res.send("hello Word express server!!!");
 });
 
